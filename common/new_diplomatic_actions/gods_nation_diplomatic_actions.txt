@@ -1,0 +1,963 @@
+gods_nation_subject = {
+    category = influence
+    
+    require_acceptance = no
+
+	is_visible = {
+		FROM = {
+			NOT = {
+				has_country_flag = gods_nation_subject_event
+			}
+			AND = {
+				is_subject = yes
+                is_subject_of = ROOT
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+	}
+
+	is_allowed = {
+		NOT = {
+			ai = yes
+		}
+	}
+
+	on_accept = {
+		FROM = {
+			add_country_modifier = {
+				name = gods_nation_subject_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_subject_event
+			add_treasury = 5000
+		}
+		add_trust = {
+			who = FROM
+			value = 100
+			mutual = yes
+		}
+		add_opinion = {
+			who = FROM
+			modifier = gods_nation_opinion
+		}
+		reverse_add_opinion = {
+			who = FROM
+			modifier = gods_nation_opinion
+		}
+	}
+
+	ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_subject_remove = {
+
+	category = influence
+	
+    require_acceptance = no
+
+	is_visible = {
+		FROM = {
+			AND = {
+				has_country_flag = gods_nation_subject_event
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+	}
+
+	is_allowed = {
+		NOT = {
+			ai = yes
+		}
+	}
+
+	on_accept = {
+		FROM = {
+			remove_country_modifier = gods_nation_subject_event_modifiers
+			clr_country_flag = gods_nation_subject_event
+		}
+        remove_opinion = {
+            who = FROM
+            modifier = gods_nation_opinion
+        }
+        reverse_remove_opinion = {
+            who = FROM
+            modifier = gods_nation_opinion
+        }
+	}
+
+	ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_liberty_desire_support = {
+    category = influence
+    
+    require_acceptance = no
+
+	is_visible = {
+		FROM = {
+			NOT = {
+				has_country_flag = gods_nation_liberty_desire_support
+                is_subject_of = ROOT
+			}
+			AND = {
+				is_subject = yes
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+	}
+
+	is_allowed = {
+		NOT = {
+			ai = yes
+		}
+	}
+
+	on_accept = {
+		FROM = {
+			add_country_modifier = {
+				name = gods_nation_liberty_desire_event_modifier
+				duration = -1
+			}
+			set_country_flag = gods_nation_liberty_desire_support
+		}
+	}
+
+	ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_liberty_desire_support_remove = {
+
+	category = influence
+	
+    require_acceptance = no
+
+	is_visible = {
+		FROM = {
+			AND = {
+				has_country_flag = gods_nation_liberty_desire_support
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+	}
+
+	is_allowed = {
+		NOT = {
+			ai = yes
+		}
+	}
+
+	on_accept = {
+		FROM = {
+			remove_country_modifier = gods_nation_liberty_desire_event_modifier
+			clr_country_flag = gods_nation_liberty_desire_support
+		}
+	}
+
+	ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_vassalize_casus_belli = {
+	category = cheats
+    
+    require_acceptance = no
+
+	is_visible = {
+		FROM = {
+			NOT = {
+                is_subject = yes
+			}
+		}
+		NOT = {
+			is_subject = yes
+			ai = yes
+		}
+	}
+
+	is_allowed = {
+		NOT = {
+			ai = yes
+		}
+	}
+
+	on_accept = {
+        ROOT = {
+            add_casus_belli = {
+                target = FROM
+                type = cb_vassalize_mission
+            }
+        }
+	}
+
+	ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_personal_union_casus_belli = {
+	category = cheats
+    
+    require_acceptance = no
+
+	is_visible = {
+		FROM = {
+			NOT = {
+                is_subject = yes
+				has_heir = yes
+			}
+			AND = {
+				religion_group = christian
+			}
+			OR = {
+				government = monarchy
+				has_reform = dutch_republic
+			}
+		}
+		ROOT = {
+			religion_group = christian
+		}
+		NOT = {
+			is_subject = yes
+			ai = yes
+		}
+	}
+
+	is_allowed = {
+		NOT = {
+			ai = yes
+		}
+	}
+
+	on_accept = {
+        ROOT = {
+            add_casus_belli = {
+                target = FROM
+                type = cb_restore_personal_union
+            }
+        }
+	}
+
+	ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_take_over = {
+	category = cheats
+
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			every_owned_province = {
+				cede_province = ROOT
+				if = {
+					limit = {
+						not = {
+							is_core = ROOT
+						}
+					}
+					add_core = ROOT
+				}
+			}
+		}
+    }
+    
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_religion_change = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		FROM = {
+			any_owned_province = {
+				NOT = {
+					religion = ROOT
+				}
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			change_religion = ROOT
+			every_owned_province = {
+				limit = {
+					NOT = {
+						religion = ROOT
+					}
+				}
+				change_religion = ROOT
+			}
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_culture_change = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		FROM = {
+			any_owned_province = {
+				NOT = {
+					culture_group = ROOT
+				}
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			change_primary_culture = ROOT
+			every_owned_province = {
+				limit = {
+					NOT = {
+						culture_group = ROOT 
+					}
+				}
+				change_culture = ROOT
+			}
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_remove_country = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			every_owned_province = {
+				cede_province = observer
+			}
+		}
+		every_province = {
+			add_colonysize = -1000
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_vassalize = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		FROM = {
+			NOT = {
+				vassal_of = ROOT
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		vassalize = FROM
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_pu_junior = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		FROM = {
+			NOT = {
+				junior_union_with = ROOT
+			}
+			AND = {
+				religion_group = christian
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+		AND = {
+			religion_group = christian
+			has_country_flag = gods_nation_diplomacy_options_on
+		}
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		create_union = FROM
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_alliance = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		FROM = {
+			NOT = {
+				alliance_with = ROOT
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		create_alliance = FROM
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_white_peace = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		FROM = {
+			war_with = ROOT
+		}
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		white_peace = FROM
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_independence = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		FROM = {
+			is_subject = yes
+		}
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			grant_independence = yes
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_release_all_nations = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		FROM = {
+			num_of_subjects = 1
+		}
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			release_all_subjects = yes
+			release_all_subjects = yes
+			release_all_subjects = yes
+			release_all_subjects = yes
+			release_all_subjects = yes
+			release_all_subjects = yes
+			release_all_subjects = yes
+			release_all_subjects = yes
+			release_all_subjects = yes
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_force_peace = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		FROM = {
+			is_at_war = yes
+		}
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		every_country = {
+			limit = {
+				war_with = FROM
+			}
+			FROM = {
+				white_peace = PREV
+			}
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_take_over_culture = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		any_province = {
+			culture = FROM
+			NOT = {
+				owned_by = FROM
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		every_province = {
+			limit = {
+				and = {
+					culture = FROM
+					NOT = {
+						owned_by = FROM
+						owned_by = ROOT
+					}
+				}
+			}
+			cede_province = FROM
+			if = {
+				limit = {
+					NOT = {
+						is_core = FROM
+					}
+				}
+				add_core = FROM
+			}
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_tag_change = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		switch_tag = FROM
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_kill_units = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		every_province = {
+			kill_units = {
+				who = FROM
+			}
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_spawn_rebels = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			every_owned_province = {
+				create_revolt = 100
+			}
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_kill_heir = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			kill_heir = yes
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_kill_leader = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			kill_ruler = yes
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_kill_ruler_and_heir = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		FROM = {
+			kill_ruler = yes
+			kill_heir = yes
+			define_ruler = {
+				name = "Interregnum"
+				regent = yes
+				adm = 0
+				dip = 0
+				mil = 0
+			}
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_border_claim = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		FROM = {
+			is_neighbor_of = ROOT
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		every_neighbor_province = {
+			add_permanent_claim = ROOT
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}
+
+gods_nation_cheat_all_province_claim = {
+	category = cheats
+	
+    require_acceptance = no
+    
+    is_visible = {
+		NOT = {
+			ai = yes
+		}
+		has_country_flag = gods_nation_diplomacy_options_on
+    }
+    
+    is_allowed = {
+		NOT = {
+			ai = yes
+		}
+    }
+    
+    on_accept = {
+		every_province = {
+			limit = {
+				and = {
+					owned_by = FROM
+				}
+			}
+			add_permanent_claim = ROOT
+		}
+	}
+	
+    ai_will_do = {
+        always = no
+    }
+}

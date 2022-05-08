@@ -1,0 +1,504 @@
+country_decisions = {
+
+	gods_nation_activated = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_on
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			set_country_flag = gods_nation_on
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	gods_nation_diplomacy_options_on = {
+		major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_diplomacy_options_on
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			set_country_flag = gods_nation_diplomacy_options_on
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	gods_nation_diplomacy_options_off = {
+        major = yes
+        potential = {
+			has_country_flag = gods_nation_diplomacy_options_on
+			not = {
+				ai = yes
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			clr_country_flag = gods_nation_diplomacy_options_on
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+    gods_nation_army_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_army_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_army_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_army_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_leader_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_leader_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_leader_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_leader_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_navy_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_navy_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_navy_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_navy_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_diplomatic_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_diplomatic_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_diplomatic_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_diplomatic_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_economic_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_economic_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_economic_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_economic_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_tech_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_tech_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_tech_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_tech_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_court_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_court_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_court_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_court_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_goverment_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_goverment_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_goverment_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_goverment_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_culture_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_culture_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_culture_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_culture_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_stability_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_stability_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_stability_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_stability_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_espionage_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_espionage_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_espionage_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_espionage_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_religion_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_religion_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_religion_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_religion_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_trade_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_trade_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_trade_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_trade_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_estate_decision = {
+        major = yes
+        potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_estate_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_estate_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_estate_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+    }
+
+    gods_nation_hre_decision = {
+		major = yes
+		potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_hre_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+			and = {
+				is_emperor = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_hre_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_hre_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+    gods_nation_colonisation_decision = {
+		major = yes
+		potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_colonisation_decision
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+			or = {
+				has_idea_group = expansion_ideas
+				has_idea_group = exploration_ideas
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_colonisation_event_modifiers
+				duration = -1
+			}
+			set_country_flag = gods_nation_colonisation_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+    
+	gods_nation_liberty_desire_decision = {
+		major = yes
+		potential = {
+			not = {
+				ai = yes
+				has_country_flag = gods_nation_liberty_desire_decision
+			}
+			and = {
+				is_subject = yes
+			}
+		}
+		allow = {
+			not = {
+				ai = yes
+			}
+			and = {
+				is_subject = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = gods_nation_liberty_desire_event_modifier
+				duration = -1
+			}
+			set_country_flag = gods_nation_liberty_desire_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+}
